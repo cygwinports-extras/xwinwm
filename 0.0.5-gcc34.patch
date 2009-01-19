@@ -1,0 +1,20 @@
+http://www.mail-archive.com/blackbox@asgardsrealm.net/msg01417.html
+
+"This _very_ ugly patch fixes a build issue with GCC-3.4. The new
+compiler complains about the variables 'c' and 'comp' - these two
+variables are protected in the _Base parent class."
+
+--- origsrc/xwinwm-0.0.5/src/Timer.hh	2004-04-10 22:23:44.000000000 -0500
++++ src/xwinwm-0.0.5/src/Timer.hh	2009-01-19 02:27:26.395125000 -0600
+@@ -99,9 +99,9 @@ public:
+   ~_timer_queue(void) {}
+ 
+   void release(const _Tp& value) {
+-    c.erase(std::remove(c.begin(), c.end(), value), c.end());
++    _Base::c.erase(std::remove(_Base::c.begin(), _Base::c.end(), value), _Base::c.end());
+     // after removing the item we need to make the heap again
+-    std::make_heap(c.begin(), c.end(), comp);
++    std::make_heap(_Base::c.begin(), _Base::c.end(), _Base::comp);
+   }
+   bool empty(void) const { return _Base::empty(); }
+   size_t size(void) const { return _Base::size(); }

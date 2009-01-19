@@ -1,0 +1,12 @@
+inherit cvs
+
+DESCRIPTION="Window manager for Cygwin/X WindowsWM multi-window mode"
+HOMEPAGE="http://peppermint.jp/products/x/"
+CVS_URI=":pserver:anoncvs@anoncvs.freedesktop.org:/cvs/xserver"
+PATCH_URI="0.0.5-gcc34.patch"
+
+DISTCLEANFILES="doc/Makefile doc/xwinwm.1 doc/*/Makefile doc/*/xwinwm.1
+                nls/Makefile nls/*/Makefile nls/*/Translation.m nls/*/blackbox.cat
+                src/blackbox.cc"
+
+LIBS+=" -lcatgets"
